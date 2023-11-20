@@ -23,6 +23,7 @@ steps:
       - deploy
       - ${_SERVICE_NAME}
       - '--platform=managed'
+      - "--image",
       - 'us-central1-docker.pkg.dev/${PROJECT_ID}/cloud-run-source-deploy/image'
       - '--region=${LOCATION}'
       - '--allow-unauthenticated'
