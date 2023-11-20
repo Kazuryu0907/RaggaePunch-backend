@@ -1,16 +1,17 @@
 steps:
+
   - name: gcr.io/cloud-builders/docker
     args: [ "build",
             '--no-cache',
             '-t',
-            '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}:${COMMIT_SHA}',
+            '${_IMAGE_NAME}:$COMMIT_SHA',
             '.',
       ]
     id: Build
   - name: gcr.io/cloud-builders/docker
     args:
       - push
-      - '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}:${COMMIT_SHA}'
+      - '${_IMAGE_NAME}:$COMMIT_SHA'
     id: Push
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     args:
@@ -18,10 +19,15 @@ steps:
       - deploy
       - ${_SERVICE_NAME}
       - '--platform=managed'
-      - '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}:${COMMIT_SHA}'
+      - '${_IMAGE_NAME}:$COMMIT_SHA'
       - '--region=${LOCATION}'
       - '--allow-unauthenticated'
     id: Deploy
     entrypoint: gcloud
+
+substitutions:
+  _IMAGE_NAME: ${_IMAGE_NAME}
+  _SERVICE_NAME: ${_SERVICE_NAME}
+  _REGION: ${_REGION}
 images:
-  - '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}:${COMMIT_SHA}'
+  - '${_IMAGE_NAME}:$COMMIT_SHA'
