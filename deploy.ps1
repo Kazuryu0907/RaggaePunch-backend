@@ -1,5 +1,5 @@
 #create instance
-gcloud sql instances create tuto-db --database-version=POSTGRES_12 --storage-size=10 --storage-type=HDD --tier=db-custom-1-1024 --region=us-central1 
+gcloud sql instances create tuto-db --database-version=POSTGRES_12 --storage-size=10 --storage-type=HDD --tier=db-custom-1-3840 --region=us-central1 
 
 #set password
 gcloud sql users set-password postgres --instance=tuto-db --password=password
