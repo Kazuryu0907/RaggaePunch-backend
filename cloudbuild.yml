@@ -3,7 +3,7 @@ steps:
     args: [ "build",
             '--no-cache',
             '-t',
-            "'${_GCR_REGION}/${_GCR_PROJECT}/${_GCR_IMAGE_NAME}:${_GCR_TAG}'",
+            '${_GCR_REGION}/${_GCR_PROJECT}/${_GCR_IMAGE_NAME}:${_GCR_TAG}',
             '.',
       ]
     id: Build
