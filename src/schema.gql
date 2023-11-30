@@ -1,0 +1,33 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type PostModel {
+  id: ID!
+  name: String!
+  childrens: Int!
+  adults: Int!
+  checked: Boolean!
+  time: String!
+}
+
+type Query {
+  posts: [PostModel!]
+}
+
+type Mutation {
+  updateCheck(id: Int!): PostModel!
+  createPost(input: CreatePostInput!): PostModel!
+}
+
+input CreatePostInput {
+  name: String!
+  childrens: Int!
+  adults: Int!
+  checked: Boolean!
+  time: String!
+}
+
+type Subscription {
+  postAdded: PostModel!
+}
