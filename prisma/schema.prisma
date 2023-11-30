@@ -10,9 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model task {
+model post {
   id Int @id @default(autoincrement())
-  title String
-  content String?
+  name String
+  childrens Int
+  adults Int
+  checked Boolean @default(false)
+  time String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 }
 
