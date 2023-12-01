@@ -22,10 +22,13 @@ export class PostsResolver {
     return this.prismaService.post.findMany({
       orderBy: [
         {
-          time: 'desc',
+          time: 'asc',
         },
         {
           checked: 'desc',
+        },
+        {
+          id: 'asc',
         },
       ],
     });

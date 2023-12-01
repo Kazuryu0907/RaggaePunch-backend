@@ -1,36 +1,28 @@
-import { PrismaClient, post } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+import { CreatePostInput } from 'src/posts/interfaces/create-post.input';
 const prisma = new PrismaClient();
 
-const postData: post[] = [
+const postData: CreatePostInput[] = [
   {
-    id: 0,
     name: 'みけ',
     childrens: 0,
     adults: 1,
     checked: false,
     time: '1/1',
-    created_at: new Date(),
-    updated_at: new Date(),
   },
   {
-    id: 2,
     name: 'Jack',
     childrens: 2,
     adults: 1,
     checked: true,
     time: '1/1',
-    created_at: new Date(),
-    updated_at: new Date(),
   },
   {
-    id: 3,
     name: 'i',
     childrens: 2,
     adults: 1,
     checked: false,
     time: '1/2',
-    created_at: new Date(),
-    updated_at: new Date(),
   },
 ];
 
