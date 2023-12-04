@@ -11,13 +11,23 @@ type PostModel {
   time: String!
 }
 
+type TimeModel {
+  id: ID!
+  time: String!
+}
+
 type Query {
   posts: [PostModel!]
+  postsOrderById: [PostModel!]
+  getTimes: [TimeModel!]
 }
 
 type Mutation {
   updateCheck(id: Int!): PostModel!
   createPost(input: CreatePostInput!): PostModel!
+  deletePost(id: Float!): PostModel!
+  createTime(input: String!): TimeModel!
+  deleteTime(id: Float!): TimeModel!
 }
 
 input CreatePostInput {

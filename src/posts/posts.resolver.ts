@@ -34,6 +34,17 @@ export class PostsResolver {
     });
   }
 
+  @Query(() => [PostModel], { name: 'postsOrderById', nullable: true })
+  async getPostsById() {
+    return this.prismaService.post.findMany({
+      orderBy: [
+        {
+          id: 'desc',
+        },
+      ],
+    });
+  }
+
   @Mutation(() => PostModel)
   async updateCheck(@Args('id', { type: () => Int }) id: number) {
     const post = await this.prismaService.post.findUnique({
@@ -65,6 +76,16 @@ export class PostsResolver {
     //Publishing the event
     pubSub.publish('postAdded', { postAdded: newPost });
     return newPost;
+  }
+
+  @Mutation(() => PostModel)
+  async deletePost(@Args('id') id: number) {
+    const post = this.prismaService.post.delete({
+      where: {
+        id: id,
+      },
+    });
+    return post;
   }
 
   @Subscription(() => PostModel)

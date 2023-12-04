@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
 import { PostsModule } from './posts/posts.module';
+import { TimesModule } from './times/times.module';
 import * as path from 'path';
 
 @Module({
@@ -18,6 +19,7 @@ import * as path from 'path';
       },
     }),
     PostsModule,
+    TimesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

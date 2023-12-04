@@ -21,3 +21,7 @@ model post {
   updated_at DateTime @default(now()) @updatedAt
 }
 
+model time {
+  id Int @id @default(autoincrement())
+  time String
+}

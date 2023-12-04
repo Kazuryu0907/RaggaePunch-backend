@@ -26,6 +26,15 @@ const postData: CreatePostInput[] = [
   },
 ];
 
+const timeData = [
+  {
+    time: '1/1',
+  },
+  {
+    time: '1/2',
+  },
+];
+
 const doPostSeed = async () => {
   const posts = [];
   for (const post of postData) {
@@ -34,6 +43,13 @@ const doPostSeed = async () => {
     });
     posts.push(createPosts);
   }
+  for (const time of timeData) {
+    const createTimes = prisma.time.create({
+      data: time,
+    });
+    posts.push(createTimes);
+  }
+
   return await prisma.$transaction(posts);
 };
 
