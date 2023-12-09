@@ -2,7 +2,7 @@ import { Field, ObjectType, ID, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class PostModel {
-  @Field((type) => ID)
+  @Field((type) => Number)
   id: number;
 
   @Field()

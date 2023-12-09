@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type PostModel {
-  id: ID!
+  id: Float!
   name: String!
   childrens: Int!
   adults: Int!
@@ -25,7 +25,8 @@ type Query {
 type Mutation {
   updateCheck(id: Int!): PostModel!
   createPost(input: CreatePostInput!): PostModel!
-  deletePost(id: Float!): PostModel!
+  updatePost(id: Int!, input: CreatePostInput!): PostModel!
+  deletePost(id: Int!): PostModel!
   createTime(input: String!): TimeModel!
   deleteTime(id: Float!): TimeModel!
 }

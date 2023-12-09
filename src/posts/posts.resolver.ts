@@ -79,7 +79,25 @@ export class PostsResolver {
   }
 
   @Mutation(() => PostModel)
-  async deletePost(@Args('id') id: number) {
+  async updatePost(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('input') input: CreatePostInput,
+  ) {
+    return this.prismaService.post.update({
+      where: {
+        id: id,
+      },
+      data: {
+        name: input.name,
+        childrens: input.childrens,
+        adults: input.adults,
+        checked: input.checked,
+        time: input.time,
+      },
+    });
+  }
+  @Mutation(() => PostModel)
+  async deletePost(@Args('id', { type: () => Int }) id: number) {
     const post = this.prismaService.post.delete({
       where: {
         id: id,
