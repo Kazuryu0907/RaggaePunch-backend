@@ -15,6 +15,6 @@ async function bootstrap() {
     origin: '*',
     allowedHeaders: '*',
   });
-  await app.listen(PORT, 'localhost');
+  await app.listen(PORT, '0.0.0.0');
 }
 bootstrap();
