@@ -83,7 +83,7 @@ export class PostsResolver {
     @Args('id', { type: () => Int }) id: number,
     @Args('input') input: CreatePostInput,
   ) {
-    return this.prismaService.post.update({
+    const updatePost = this.prismaService.post.update({
       where: {
         id: id,
       },
@@ -95,6 +95,9 @@ export class PostsResolver {
         time: input.time,
       },
     });
+
+    pubSub.publish('postUpdated', { postUpdated: updatePost });
+    return updatePost;
   }
   @Mutation(() => PostModel)
   async deletePost(@Args('id', { type: () => Int }) id: number) {
@@ -103,11 +106,22 @@ export class PostsResolver {
         id: id,
       },
     });
+    pubSub.publish('postDeleted', { postDeleted: post });
     return post;
   }
 
   @Subscription(() => PostModel)
   async postAdded() {
     return pubSub.asyncIterator('postAdded');
+  }
+
+  @Subscription(() => PostModel)
+  async postUpdated() {
+    return pubSub.asyncIterator('postUpdated');
+  }
+
+  @Subscription(() => PostModel)
+  async postDeleted() {
+    return pubSub.asyncIterator('postDeleted');
   }
 }
