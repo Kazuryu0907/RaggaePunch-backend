@@ -17,4 +17,5 @@ async function bootstrap() {
   });
   await app.listen(PORT, '0.0.0.0');
 }
+console.log(process.env.DATABASE_URL);
 bootstrap();
