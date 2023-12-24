@@ -17,6 +17,7 @@ import * as path from 'path';
         'graphql-ws': true,
         'subscriptions-transport-ws': true,
       },
+      introspection: true,
     }),
     PostsModule,
     TimesModule,
